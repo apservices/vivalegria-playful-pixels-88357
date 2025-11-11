@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 23%; /* #3A3A3C */
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 23%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 23%;
+
+    /* Sunshine Premium Brand Colors */
+    --primary: 18 100% 56%; /* Sunshine-Orange #FF6A1A */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 41 100% 58%; /* Gold-Sun #FFC727 */
+    --secondary-foreground: 0 0% 23%;
+
+    --accent: 39 96% 48%; /* Deep-Sun #F7B400 */
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 0 0% 98%; /* Soft Off-White #F9F9F9 */
+    --muted-foreground: 0 0% 46%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 93%;
+    --input: 0 0% 93%;
+    --ring: 18 100% 56%;
+
+    --radius: 1rem;
+
+    /* Sunshine Premium Palette */
+    --viva-sun: 41 100% 58%; /* Gold-Sun #FFC727 */
+    --viva-gold: 39 96% 48%; /* Deep-Sun #F7B400 */
+    --viva-orange: 18 100% 56%; /* Sunshine-Orange #FF6A1A */
+    --viva-warm: 11 100% 53%; /* Warm Orange #FF4E17 */
+    --viva-blue: 202 54% 67%; /* Trust-Blue #77AEDD */
+    --viva-dark: 0 0% 23%; /* Neutral Premium #3A3A3C */
+    
+    /* Premium Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(41 100% 58%), hsl(18 100% 56%));
+    --gradient-warm: linear-gradient(135deg, hsl(18 100% 56%), hsl(11 100% 53%));
+    --gradient-subtle: linear-gradient(180deg, hsl(41 100% 58% / 0.08), hsl(18 100% 56% / 0.04));
+    --gradient-hero: linear-gradient(180deg, transparent 0%, hsl(0 0% 100% / 0.9) 100%);
+    
+    /* Apple-level Shadows */
+    --shadow-soft: 0 4px 14px rgba(0, 0, 0, 0.06);
+    --shadow-hover: 0 10px 40px rgba(0, 0, 0, 0.12);
+    --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.04);
+    --shadow-premium: 0 8px 32px rgba(255, 106, 26, 0.15);
+    
+    /* Apple-like Transitions */
+    --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    --transition-elegant: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .dark {
+    --background: 0 0% 10%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 14%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 14%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 45 100% 52%;
+    --primary-foreground: 0 0% 20%;
+
+    --secondary: 202 52% 66%;
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 28 100% 65%;
+    --accent-foreground: 0 0% 20%;
+
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 65%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 45 100% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+
+  h1 {
+    font-size: clamp(2.25rem, 5vw + 1rem, 4rem);
+    line-height: 1.1;
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 4vw + 0.5rem, 3rem);
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-size: clamp(1.25rem, 3vw + 0.25rem, 2rem);
+    line-height: 1.3;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+
+  .hover-lift {
+    transition: var(--transition-smooth);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .bg-gradient-subtle {
+    background: var(--gradient-subtle);
+  }
+
+  .bg-gradient-warm {
+    background: var(--gradient-warm);
+  }
+
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
