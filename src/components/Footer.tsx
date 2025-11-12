@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Instagram, Facebook } from "lucide-react";
-import logoVivalegria from "@/assets/logo-vivalegria-transparent.png";
+import logoVivalegria from "@/assets/logo-vivalegria-new.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-muted border-t border-border/50">
+    <footer className="bg-[#FFF8E6] border-t border-[#FFD836]/30">
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Logo & Description */}
           <div className="space-y-5">
-            <img src={logoVivalegria} alt="Vivalegria" className="h-14 w-auto" />
+            <img src={logoVivalegria} alt="Vivalegria" className="h-12 w-auto" />
             <p className="text-sm text-muted-foreground leading-relaxed">
               Transformando festas em experiências inesquecíveis desde 2015.
             </p>
@@ -18,7 +18,7 @@ const Footer = () => {
                 href="https://instagram.com/vivalegria"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full bg-secondary hover:bg-primary hover:text-white transition-all duration-300"
+                className="p-3 rounded-full bg-[#FFD836] hover:bg-[#FF731D] hover:text-white transition-all duration-300"
                 aria-label="Instagram"
               >
                 <Instagram size={20} />
@@ -27,7 +27,7 @@ const Footer = () => {
                 href="https://facebook.com/vivalegria"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full bg-secondary hover:bg-primary hover:text-white transition-all duration-300"
+                className="p-3 rounded-full bg-[#FFD836] hover:bg-[#FF731D] hover:text-white transition-all duration-300"
                 aria-label="Facebook"
               >
                 <Facebook size={20} />
@@ -40,27 +40,27 @@ const Footer = () => {
             <h3 className="font-semibold mb-5 text-foreground">Navegação</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">
+                <Link to="/" className="text-sm text-muted-foreground hover:text-[#FF731D] transition-colors duration-300">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/pacotes" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">
+                <Link to="/pacotes" className="text-sm text-muted-foreground hover:text-[#FF731D] transition-colors duration-300">
                   Pacotes
                 </Link>
               </li>
               <li>
-                <Link to="/oficinas" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">
+                <Link to="/oficinas" className="text-sm text-muted-foreground hover:text-[#FF731D] transition-colors duration-300">
                   Oficinas Criativas
                 </Link>
               </li>
               <li>
-                <Link to="/quem-somos" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">
+                <Link to="/quem-somos" className="text-sm text-muted-foreground hover:text-[#FF731D] transition-colors duration-300">
                   Quem Somos
                 </Link>
               </li>
               <li>
-                <Link to="/corporativo" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">
+                <Link to="/corporativo" className="text-sm text-muted-foreground hover:text-[#FF731D] transition-colors duration-300">
                   Eventos Corporativos
                 </Link>
               </li>
@@ -84,18 +84,18 @@ const Footer = () => {
             <h3 className="font-semibold mb-5 text-foreground">Contato</h3>
             <ul className="space-y-4">
               <li className="flex items-start space-x-3 text-sm">
-                <MapPin size={18} className="mt-1 flex-shrink-0 text-secondary" />
+                <MapPin size={18} className="mt-1 flex-shrink-0 text-[#FFD836]" />
                 <span className="text-muted-foreground">São Paulo - SP</span>
               </li>
               <li className="flex items-center space-x-3 text-sm">
-                <Phone size={18} className="flex-shrink-0 text-secondary" />
-                <a href="https://wa.me/5511992049001" className="text-muted-foreground hover:text-primary transition-colors duration-300">
+                <Phone size={18} className="flex-shrink-0 text-[#FFD836]" />
+                <a href="https://wa.me/5511992049001" className="text-muted-foreground hover:text-[#FF731D] transition-colors duration-300">
                   (11) 99204-9001
                 </a>
               </li>
               <li className="flex items-center space-x-3 text-sm">
-                <Mail size={18} className="flex-shrink-0 text-secondary" />
-                <a href="mailto:contato@vivalegria.com.br" className="text-muted-foreground hover:text-primary transition-colors duration-300">
+                <Mail size={18} className="flex-shrink-0 text-[#FFD836]" />
+                <a href="mailto:contato@vivalegria.com.br" className="text-muted-foreground hover:text-[#FF731D] transition-colors duration-300">
                   contato@vivalegria.com.br
                 </a>
               </li>
@@ -107,16 +107,16 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-border/50 mt-12 pt-10 text-center">
+        <div className="border-t border-[#FFD836]/30 mt-12 pt-10 text-center">
           <p className="text-sm text-muted-foreground font-medium">
             © {new Date().getFullYear()} Vivalegria Recreação. Todos os direitos reservados.
           </p>
           <div className="flex justify-center space-x-6 mt-4">
-            <Link to="/privacidade" className="text-xs text-muted-foreground hover:text-primary transition-colors duration-300">
+            <Link to="/privacidade" className="text-xs text-muted-foreground hover:text-[#FF731D] transition-colors duration-300">
               Política de Privacidade
             </Link>
             <span className="text-xs text-muted-foreground">•</span>
-            <Link to="/termos" className="text-xs text-muted-foreground hover:text-primary transition-colors duration-300">
+            <Link to="/termos" className="text-xs text-muted-foreground hover:text-[#FF731D] transition-colors duration-300">
               Termos de Uso
             </Link>
           </div>

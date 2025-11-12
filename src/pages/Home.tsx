@@ -86,60 +86,72 @@ const Home = () => {
       <JsonLd type="faq" />
       
       <div className="min-h-screen">
-        {/* Hero Section - Minimalist */}
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
-          <div className="container mx-auto px-6 py-48 relative z-10">
-            <div className="max-w-6xl mx-auto text-center space-y-12 animate-fade-in">
-              <h1 className="leading-[1.05] tracking-tight">
-                Onde cada evento<br />vira uma memória eterna
+        {/* Hero Section - Warm & Welcoming */}
+        <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#FFD836]/20 via-white to-white pt-20">
+          <div className="container mx-auto px-6 py-24 relative z-10">
+            <div className="max-w-5xl mx-auto text-center space-y-8 animate-fade-in">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                Transforme seu evento em um<br />momento mágico!
               </h1>
-              <p className="text-2xl md:text-3xl text-muted-foreground max-w-4xl mx-auto font-light leading-relaxed">
-                Recreação infantil premium
+              <p className="text-xl md:text-2xl text-foreground/80 max-w-3xl mx-auto leading-relaxed">
+                Recreação infantil com alegria, segurança e profissionalismo.<br />
+                Experiências inesquecíveis para toda a família.
               </p>
-              <div className="pt-8">
-                <Button asChild size="lg" className="rounded-full text-base px-12">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+                <Button asChild size="lg" className="rounded-full text-lg px-10 h-14">
                   <Link to="/contratar">
-                    Planejar evento
+                    Planejar meu evento
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="rounded-full text-lg px-10 h-14">
+                  <Link to="/pacotes">
+                    Ver pacotes
                   </Link>
                 </Button>
               </div>
             </div>
           </div>
           
-          {/* Subtle background element */}
-          <div className="absolute inset-0 -z-10 overflow-hidden">
-            <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
+          {/* Decorative elements */}
+          <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+            <div className="absolute top-20 right-10 w-64 h-64 bg-[#FFD836]/20 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-20 left-10 w-80 h-80 bg-[#FF731D]/10 rounded-full blur-3xl"></div>
           </div>
         </section>
 
-      {/* Values Section - Minimalist */}
-      <section className="py-40 bg-muted/20 border-y border-border/50">
+      {/* Values Section - Card Style */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-              {values.map((value, index) => (
-                <div
-                  key={index}
-                  className="space-y-4 animate-fade-in"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <h3 className="text-2xl font-semibold tracking-tight">{value.title}</h3>
-                  <p className="text-lg text-muted-foreground leading-relaxed font-light">
-                    {value.description}
-                  </p>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Por que escolher a Vivalegria?</h2>
+            <p className="text-xl text-muted-foreground">O que nos torna especiais</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+            {values.map((value, index) => (
+              <Card
+                key={index}
+                className="p-8 text-center hover:-translate-y-2 transition-all duration-300 shadow-card hover:shadow-hover border-2"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="w-16 h-16 mx-auto mb-6 bg-[#FFD836] rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-[#FF731D] rounded-full"></div>
                 </div>
-              ))}
-            </div>
+                <h3 className="text-xl font-bold mb-3 text-[#FF731D]">{value.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {value.description}
+                </p>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Packages Preview - Minimalist */}
-      <section className="py-40 bg-background">
+      {/* Packages Preview - Colorful Cards */}
+      <section className="py-20 bg-[#FFF8E6]">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-24">
-            <h2 className="mb-6 tracking-tight">Pacotes</h2>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Nossos Pacotes</h2>
+            <p className="text-xl text-muted-foreground">Escolha o ideal para o seu evento</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
@@ -147,42 +159,53 @@ const Home = () => {
               {
                 name: "Classic",
                 desc: "Festas de aniversário e reuniões familiares",
-                features: ["Monitores especializados", "Brincadeiras temáticas", "Kit segurança"],
+                features: ["2 monitores especializados", "4 horas de duração", "Brincadeiras temáticas", "Kit de segurança"],
+                color: "border-[#FFD836]",
               },
               {
                 name: "Select",
                 desc: "Eventos premium com produção completa",
-                features: ["Decoração personalizada", "Oficinas criativas", "Trupe de animadores"],
+                features: ["4 monitores especializados", "6 horas de duração", "Decoração personalizada", "3 oficinas criativas"],
                 featured: true,
+                color: "border-[#FF731D]",
               },
               {
                 name: "Corporativo",
                 desc: "Shoppings, hotéis, escolas e empresas",
-                features: ["Recreação temática", "Personagem Solo", "Suporte completo"],
+                features: ["6+ monitores", "8+ horas", "Recreação temática", "Personagem Solo"],
+                color: "border-[#73B6F0]",
               },
             ].map((pkg, index) => (
               <Card
                 key={index}
-                className={`p-12 hover:shadow-elegant transition-all duration-500 ${pkg.featured ? 'border-primary' : 'border-border/50'}`}
+                className={`p-8 hover:-translate-y-2 transition-all duration-300 shadow-card hover:shadow-hover border-t-4 ${pkg.color} ${
+                  pkg.featured ? 'ring-2 ring-[#FF731D] scale-105' : ''
+                }`}
               >
+                {pkg.featured && (
+                  <span className="inline-block bg-[#FF731D] text-white text-xs font-bold px-3 py-1 rounded-full mb-4">
+                    MAIS POPULAR
+                  </span>
+                )}
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-3xl font-semibold tracking-tight mb-3">{pkg.name}</h3>
-                    <p className="text-muted-foreground leading-relaxed font-light">{pkg.desc}</p>
+                    <h3 className="text-3xl font-bold mb-3 text-[#FF731D]">{pkg.name}</h3>
+                    <p className="text-muted-foreground">{pkg.desc}</p>
                   </div>
-                  <ul className="space-y-3 pt-4 border-t border-border/50">
+                  <ul className="space-y-3">
                     {pkg.features.map((feature, i) => (
-                      <li key={i} className="flex items-start">
-                        <span className="text-sm text-muted-foreground font-light">{feature}</span>
+                      <li key={i} className="flex items-start gap-2">
+                        <span className="text-[#FFD836] mt-1">✓</span>
+                        <span className="text-sm">{feature}</span>
                       </li>
                     ))}
                   </ul>
                   <Button 
                     asChild 
-                    className="w-full rounded-full mt-4" 
+                    className="w-full rounded-full" 
                     variant={pkg.featured ? "default" : "outline"}
                   >
-                    <Link to="/pacotes">Saber mais</Link>
+                    <Link to="/pacotes">Ver detalhes</Link>
                   </Button>
                 </div>
               </Card>
@@ -191,40 +214,50 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Testimonials - Minimalist */}
-      <section className="py-40 bg-muted/20">
+      {/* Testimonials - Card Style */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
-          <div className="max-w-5xl mx-auto space-y-20">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">O que dizem nossos clientes</h2>
+            <p className="text-xl text-muted-foreground">Depoimentos reais de famílias felizes</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="border-l-2 border-primary pl-8 animate-fade-in" style={{ animationDelay: `${index * 150}ms` }}>
-                <p className="text-2xl text-foreground/90 leading-relaxed font-light mb-8">
+              <Card key={index} className="p-8 hover:-translate-y-2 transition-all duration-300 shadow-card hover:shadow-hover" style={{ animationDelay: `${index * 100}ms` }}>
+                <div className="flex gap-1 mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <span key={i} className="text-[#FFD836] text-xl">★</span>
+                  ))}
+                </div>
+                <p className="text-foreground/90 leading-relaxed mb-6 italic">
                   "{testimonial.content}"
                 </p>
-                <div>
-                  <p className="font-semibold text-lg">{testimonial.name}</p>
-                  <p className="text-sm text-muted-foreground mt-1">{testimonial.role}</p>
+                <div className="border-t pt-4">
+                  <p className="font-bold text-[#FF731D]">{testimonial.name}</p>
+                  <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                 </div>
-              </div>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ Section - Minimalist */}
-      <section className="py-40 bg-background border-y border-border/50">
+      {/* FAQ Section - Friendly Style */}
+      <section className="py-20 bg-[#FFF8E6]">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-24">
-            <h2 className="tracking-tight">Perguntas</h2>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Perguntas Frequentes</h2>
+            <p className="text-xl text-muted-foreground">Tire suas dúvidas</p>
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <Accordion type="single" collapsible className="space-y-6">
+            <Accordion type="single" collapsible className="space-y-4">
               {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="border-b border-border/50 pb-6">
-                  <AccordionTrigger className="text-left hover:no-underline py-0">
-                    <span className="font-semibold text-xl tracking-tight">{faq.question}</span>
+                <AccordionItem key={index} value={`item-${index}`} className="bg-white rounded-2xl border-2 border-[#FFD836]/30 px-6 shadow-soft">
+                  <AccordionTrigger className="text-left hover:no-underline py-6 hover:text-[#FF731D]">
+                    <span className="font-bold text-lg">{faq.question}</span>
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pt-4 leading-relaxed text-lg font-light">
+                  <AccordionContent className="text-muted-foreground pb-6 leading-relaxed">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -234,18 +267,28 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Final CTA - Minimalist */}
-      <section className="py-48 bg-background">
+      {/* Final CTA - Bold & Inviting */}
+      <section className="py-20 bg-gradient-to-br from-[#FF731D] to-[#FF4E17] text-white">
         <div className="container mx-auto px-6 text-center">
-          <div className="max-w-3xl mx-auto space-y-12">
-            <h2 className="text-balance leading-tight tracking-tight">
-              Vamos planejar<br />seu evento
+          <div className="max-w-4xl mx-auto space-y-8">
+            <h2 className="text-4xl md:text-5xl font-bold">
+              Pronto para criar memórias inesquecíveis?
             </h2>
-            <Button asChild size="lg" className="rounded-full text-base px-12">
-              <Link to="/contratar">
-                Falar com especialista
-              </Link>
-            </Button>
+            <p className="text-xl text-white/90 leading-relaxed">
+              Entre em contato e vamos planejar juntos o evento perfeito para você!
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+              <Button asChild size="lg" className="rounded-full text-lg px-10 h-14 bg-white text-[#FF731D] hover:bg-white/90">
+                <Link to="/contratar">
+                  Solicitar orçamento
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="rounded-full text-lg px-10 h-14 border-2 border-white text-white hover:bg-white hover:text-[#FF731D]">
+                <a href="https://wa.me/5511992049001" target="_blank" rel="noopener noreferrer">
+                  Falar no WhatsApp
+                </a>
+              </Button>
+            </div>
           </div>
         </div>
       </section>

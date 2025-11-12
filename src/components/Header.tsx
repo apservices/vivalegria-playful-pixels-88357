@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logoVivalegria from "@/assets/logo-vivalegria-transparent.png";
+import logoVivalegria from "@/assets/logo-vivalegria-new.png";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,27 +31,29 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? "bg-background/98 backdrop-blur-xl shadow-[0_4px_14px_rgba(0,0,0,0.06)]" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-white shadow-soft" : "bg-white"
       }`}
     >
       <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between h-24">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center transition-transform hover:scale-105 duration-300">
-            <img src={logoVivalegria} alt="Vivalegria Recreação" className="h-16 w-auto" />
+            <img src={logoVivalegria} alt="Vivalegria Recreação" className="h-12 md:h-14 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-2">
+          <nav className="hidden lg:flex items-center space-x-1">
             {navLinks.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
-                className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
+                className={`px-4 py-2 text-sm font-medium transition-all duration-300 relative ${
                   isActive(link.to)
-                    ? "text-primary bg-primary/10"
-                    : "text-foreground/70 hover:text-foreground hover:bg-muted"
+                    ? "text-primary"
+                    : "text-foreground hover:text-primary"
+                } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:scale-x-0 after:origin-left after:transition-transform after:duration-300 ${
+                  isActive(link.to) ? "after:scale-x-100" : "hover:after:scale-x-100"
                 }`}
               >
                 {link.label}
@@ -61,7 +63,7 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden lg:block">
-            <Button asChild size="lg" className="rounded-full shadow-premium hover:shadow-[0_12px_48px_rgba(255,106,26,0.25)]">
+            <Button asChild size="lg" className="rounded-full shadow-soft hover:shadow-hover">
               <Link to="/contratar">
                 Contratar Agora
               </Link>
@@ -70,7 +72,7 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2.5 rounded-xl hover:bg-muted transition-colors"
+            className="lg:hidden p-2 hover:bg-muted rounded-lg transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -80,22 +82,22 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <nav className="lg:hidden py-6 border-t border-border/50 animate-fade-in">
+          <nav className="lg:hidden py-4 border-t border-border animate-fade-in">
             {navLinks.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`block px-5 py-3.5 rounded-xl text-sm font-medium transition-all ${
+                className={`block px-4 py-3 text-sm font-medium transition-all ${
                   isActive(link.to)
-                    ? "text-primary bg-primary/10"
-                    : "text-foreground/70 hover:text-foreground hover:bg-muted"
+                    ? "text-primary bg-primary/5"
+                    : "text-foreground hover:text-primary hover:bg-muted"
                 }`}
               >
                 {link.label}
               </Link>
             ))}
-            <div className="px-4 pt-6">
+            <div className="px-4 pt-4">
               <Button asChild size="lg" className="w-full rounded-full">
                 <Link to="/contratar">
                   Contratar Agora

@@ -8,27 +8,27 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Base Colors */
-    --background: 0 0% 100%; /* Pure White */
-    --foreground: 0 0% 23%; /* Premium Grey #3A3A3C */
+    /* Base Colors - Vivalegria Original */
+    --background: 0 0% 100%; /* White #FFFFFF */
+    --foreground: 0 0% 24%; /* Text Gray #3C3C3C */
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 23%;
+    --card-foreground: 0 0% 24%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 23%;
+    --popover-foreground: 0 0% 24%;
 
-    /* Sunshine Premium Brand Colors */
-    --primary: 18 100% 56%; /* Sunshine Orange #FF6A1A - PRIMARY CTA */
+    /* Vivalegria Original Brand Colors */
+    --primary: 18 100% 56%; /* Viva Orange #FF731D - PRIMARY CTA */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 41 100% 58%; /* Gold-Sun #FFC727 */
-    --secondary-foreground: 0 0% 23%;
+    --secondary: 45 100% 60%; /* Viva Yellow #FFD836 */
+    --secondary-foreground: 0 0% 24%;
 
-    --accent: 39 96% 48%; /* Deep-Sun #F7B400 */
+    --accent: 202 74% 69%; /* Viva Blue #73B6F0 */
     --accent-foreground: 0 0% 100%;
 
-    --muted: 0 0% 98%; /* Off-White #F9F9F9 */
+    --muted: 44 100% 95%; /* Off-white Sections #FFF8E6 */
     --muted-foreground: 0 0% 46%;
 
     --destructive: 0 84% 60%;
@@ -41,31 +41,28 @@ All colors MUST be HSL.
     --radius: 1rem;
 
     /* Extended Vivalegria Palette */
-    --viva-sun: 41 100% 58%; /* Gold-Sun #FFC727 */
-    --viva-gold: 39 96% 48%; /* Deep-Sun #F7B400 */
-    --viva-orange: 18 100% 56%; /* Sunshine Orange #FF6A1A */
-    --viva-warm: 11 100% 53%; /* Warm Orange #FF4E17 */
-    --viva-blue: 202 54% 67%; /* Trust Blue #77AEDD */
-    --viva-dark: 0 0% 23%; /* Premium Grey #3A3A3C */
+    --viva-yellow: 45 100% 60%; /* Viva Yellow #FFD836 */
+    --viva-orange: 18 100% 56%; /* Viva Orange #FF731D */
+    --viva-orange-hover: 11 100% 53%; /* Hover state #FF4E17 */
+    --viva-blue: 202 74% 69%; /* Viva Blue #73B6F0 */
+    --viva-text: 0 0% 24%; /* Text Gray #3C3C3C */
+    --viva-offwhite: 44 100% 95%; /* Off-white #FFF8E6 */
     
-    /* Premium Gradients - Apple-inspired */
-    --gradient-primary: linear-gradient(135deg, hsl(41 100% 58%), hsl(18 100% 56%));
+    /* Gradients - Playful yet professional */
+    --gradient-hero: linear-gradient(180deg, hsl(45 100% 60%) 0%, hsl(0 0% 100%) 100%);
     --gradient-warm: linear-gradient(135deg, hsl(18 100% 56%), hsl(11 100% 53%));
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 98%), hsl(0 0% 100%));
-    --gradient-hero: linear-gradient(180deg, transparent 0%, hsl(0 0% 100% / 0.95) 100%);
-    --gradient-gold: linear-gradient(135deg, hsl(41 100% 58%), hsl(39 96% 48%));
+    --gradient-yellow: linear-gradient(135deg, hsl(45 100% 60%), hsl(45 100% 70%));
+    --gradient-subtle: linear-gradient(180deg, hsl(44 100% 95%), hsl(0 0% 100%));
     
-    /* Apple-level Shadows */
-    --shadow-soft: 0 4px 14px rgba(0, 0, 0, 0.06);
-    --shadow-hover: 0 10px 40px rgba(0, 0, 0, 0.12);
-    --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.04);
-    --shadow-premium: 0 8px 32px rgba(255, 106, 26, 0.15);
-    --shadow-elegant: 0 6px 24px rgba(0, 0, 0, 0.08);
+    /* Shadows - Playful depth */
+    --shadow-soft: 0 2px 12px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 8px 24px rgba(255, 115, 29, 0.2);
+    --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.06);
+    --shadow-premium: 0 6px 20px rgba(255, 115, 29, 0.15);
     
-    /* Apple-like Transitions */
-    --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    --transition-elegant: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* Transitions - Smooth and playful */
+    --transition-smooth: all 0.3s ease-out;
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
   .dark {

@@ -48,12 +48,14 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
         viva: {
-          sun: "hsl(var(--viva-sun))",
-          gold: "hsl(var(--viva-gold))",
+          sun: "hsl(var(--viva-yellow))",
+          gold: "hsl(var(--viva-yellow))",
           orange: "hsl(var(--viva-orange))",
-          warm: "hsl(var(--viva-warm))",
+          warm: "hsl(var(--viva-orange-hover))",
           blue: "hsl(var(--viva-blue))",
-          dark: "hsl(var(--viva-dark))",
+          dark: "hsl(var(--viva-text))",
+          yellow: "hsl(var(--viva-yellow))",
+          offwhite: "hsl(var(--viva-offwhite))",
         },
       },
       fontFamily: {
