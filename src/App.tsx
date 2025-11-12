@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ConfiguratorProvider } from "@/contexts/ConfiguratorContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -24,31 +25,33 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/pacotes" element={<Pacotes />} />
-              <Route path="/oficinas" element={<Oficinas />} />
-              <Route path="/quem-somos" element={<QuemSomos />} />
-              <Route path="/corporativo" element={<Corporativo />} />
-              <Route path="/contato" element={<Contato />} />
-              <Route path="/contratar" element={<Contratar />} />
-              <Route path="/guia-para-pais" element={<GuiaParaPais />} />
-              <Route path="/privacidade" element={<Privacidade />} />
-              <Route path="/termos" element={<Termos />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-          <Footer />
-          <WhatsAppButton />
-          <CookieConsent />
-        </div>
-      </BrowserRouter>
+      <ConfiguratorProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <div className="flex flex-col min-h-screen">
+            <Header />
+            <main className="flex-grow">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/pacotes" element={<Pacotes />} />
+                <Route path="/oficinas" element={<Oficinas />} />
+                <Route path="/quem-somos" element={<QuemSomos />} />
+                <Route path="/corporativo" element={<Corporativo />} />
+                <Route path="/contato" element={<Contato />} />
+                <Route path="/contratar" element={<Contratar />} />
+                <Route path="/guia-para-pais" element={<GuiaParaPais />} />
+                <Route path="/privacidade" element={<Privacidade />} />
+                <Route path="/termos" element={<Termos />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </main>
+            <Footer />
+            <WhatsAppButton />
+            <CookieConsent />
+          </div>
+        </BrowserRouter>
+      </ConfiguratorProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

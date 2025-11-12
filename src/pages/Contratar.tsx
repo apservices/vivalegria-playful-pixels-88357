@@ -1,322 +1,375 @@
-import { useState } from "react";
-import { Check, Plus, ArrowRight } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import SEO from "@/components/SEO";
-import { 
-  calculatePackagePrice, 
-  calculateWorkshopPrice, 
-  formatPrice, 
-  childrenRanges,
-  type ChildrenRange,
-  type PackageType,
-  type WorkshopType 
-} from "@/utils/pricing";
+import { useConfigurator } from "@/contexts/ConfiguratorContext";
+import { formatPrice, childrenRanges, type WorkshopType } from "@/utils/pricing";
+import { calculateWorkshopPrice } from "@/utils/pricing";
+import oficinaCupcake from "@/assets/oficina-cupcake.jpg";
+import oficinaMicangas from "@/assets/oficina-micangas.jpg";
+import oficinaPintura from "@/assets/oficina-pintura.jpg";
+import oficinaSlime from "@/assets/oficina-slime.jpg";
+import oficinaJardinagem from "@/assets/oficina-jardinagem.jpg";
 
 const Contratar = () => {
-  const [selectedPackage, setSelectedPackage] = useState<PackageType | null>(null);
-  const [numChildren, setNumChildren] = useState<ChildrenRange>(15);
-  const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
+  const {
+    packageType,
+    numChildren,
+    selectedWorkshops,
+    selectedExtras,
+    setPackageType,
+    setNumChildren,
+    toggleWorkshop,
+    toggleExtra,
+    calculateTotal,
+    getWhatsAppMessage,
+  } = useConfigurator();
 
   const packages = [
     {
-      id: "select" as PackageType,
-      name: "Vivalegria Select",
-      badge: "MAIS POPULAR",
+      id: "classic" as const,
+      name: "Classic",
+      description: "Diversão garantida com brincadeiras clássicas",
       features: [
-        "4 monitores especializados",
-        "6 horas de duração",
-        "Decoração temática personalizada",
-        "3 oficinas criativas",
-        "Trupe de animadores profissionais",
-        "Personagem Solo incluso",
+        "Recreadores especializados",
+        "Brincadeiras clássicas",
+        "Duração: 4 horas",
+        "Material de qualidade",
       ],
     },
     {
-      id: "classic" as PackageType,
-      name: "Vivalegria Classic",
+      id: "select" as const,
+      name: "Select",
+      description: "Experiência premium com atividades exclusivas",
       features: [
-        "2 monitores especializados",
-        "4 horas de duração",
-        "Brincadeiras temáticas adaptadas",
-        "Kit completo de segurança",
-        "1 oficina criativa à escolha",
-        "Equipamentos inclusos",
+        "Tudo do Classic",
+        "Atividades temáticas",
+        "Coordenador exclusivo",
+        "Decoração personalizada",
       ],
     },
   ];
 
-  const extras: { id: WorkshopType; name: string }[] = [
-    { id: "pintura_basica", name: "Pintura Artística Básica" },
-    { id: "pintura_pro", name: "Pintura Artística Profissional" },
-    { id: "slime", name: "Oficina Slime" },
-    { id: "micangas", name: "Oficina Miçangas" },
-    { id: "jardinagem", name: "Oficina Jardinagem" },
-    { id: "tela", name: "Pintura em Tela" },
-    { id: "cupcake", name: "Cupcake Decorado" },
-    { id: "baladinha", name: "Baladinha Kids" },
-    { id: "magicas", name: "Show de Mágicas" },
-    { id: "baby", name: "Área Baby" },
-    { id: "torta", name: "Torta na Cara" },
+  const workshops = [
+    {
+      id: "slime" as WorkshopType,
+      name: "Slime",
+      description: "Criação de slimes coloridos e divertidos",
+      image: oficinaSlime,
+    },
+    {
+      id: "micangas" as WorkshopType,
+      name: "Miçangas",
+      description: "Criação de bijuterias e acessórios",
+      image: oficinaMicangas,
+    },
+    {
+      id: "cupcake" as WorkshopType,
+      name: "Cupcake",
+      description: "Decoração de cupcakes deliciosos",
+      image: oficinaCupcake,
+    },
+    {
+      id: "tela" as WorkshopType,
+      name: "Pintura em Tela",
+      description: "Arte em tela para pequenos artistas",
+      image: oficinaPintura,
+    },
+    {
+      id: "jardinagem" as WorkshopType,
+      name: "Jardinagem",
+      description: "Plantio e cuidados com plantas",
+      image: oficinaJardinagem,
+    },
   ];
 
-  const toggleExtra = (extraId: string) => {
-    setSelectedExtras((prev) =>
-      prev.includes(extraId) ? prev.filter((id) => id !== extraId) : [...prev, extraId]
-    );
-  };
+  const extras = [
+    { id: "recreador" as const, name: "Recreador adicional", price: 180 },
+    { id: "apoio" as const, name: "Apoio adicional", price: 140 },
+    { id: "hora_extra" as const, name: "Hora extra", price: 200 },
+  ];
 
-  const calculateTotal = () => {
-    if (!selectedPackage) return 0;
-    
-    const basePrice = calculatePackagePrice(selectedPackage, numChildren);
-    
-    const extrasTotal = selectedExtras.reduce((sum, extraId) => {
-      return sum + calculateWorkshopPrice(extraId as WorkshopType, numChildren);
-    }, 0);
-
-    return basePrice + extrasTotal;
+  const scrollToForm = () => {
+    const formElement = document.getElementById("jotform-container");
+    formElement?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <>
       <SEO
-        title="Contratar Serviço | Vivalegria"
-        description="Configure seu pacote personalizado e agende seu evento com a Vivalegria"
+        title="Contratar Serviços | Vivalegria"
+        description="Configure seu pacote ideal para festas infantis. Escolha entre pacotes Classic e Select, adicione oficinas criativas e reserve agora!"
         canonical="/contratar"
       />
 
-      <div className="min-h-screen pt-20">
+      <div className="min-h-screen pt-20 bg-background">
         {/* Hero */}
-        <section className="py-16 bg-gradient-to-br from-viva-sun/10 via-viva-orange/10 to-viva-warm/5">
-          <div className="container mx-auto px-4 text-center">
-            <h1 className="mb-4">Configure Seu Evento Premium</h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Monte o pacote perfeito em 4 passos simples
-            </p>
+        <section className="py-12 bg-gradient-subtle">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center space-y-4">
+              <h1 className="text-balance">Monte Seu Pacote Ideal</h1>
+              <p className="text-lg text-muted-foreground">
+                Configure seu evento em 4 passos simples
+              </p>
+            </div>
           </div>
         </section>
 
-        <div className="container mx-auto px-4 py-16 max-w-7xl">
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Left Column - Configuration */}
-            <div className="lg:col-span-2 space-y-8">
-              {/* Step 1 - Package Selection */}
-              <Card className="p-8">
-                <div className="mb-6">
-                  <Badge className="mb-2">Passo 1</Badge>
-                  <h2 className="text-2xl font-bold">Escolha seu Pacote</h2>
-                </div>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {packages.map((pkg) => (
-                    <div
-                      key={pkg.id}
-                      onClick={() => setSelectedPackage(pkg.id)}
-                      className={`p-6 rounded-2xl border-2 cursor-pointer transition-all ${
-                        selectedPackage === pkg.id
-                          ? "border-primary bg-primary/5 shadow-premium"
-                          : "border-border hover:border-primary/50"
-                      }`}
-                    >
-                      {pkg.badge && (
-                        <Badge className="mb-3 bg-primary">{pkg.badge}</Badge>
-                      )}
-                      <h3 className="text-xl font-bold mb-2">{pkg.name}</h3>
-                      <p className="text-2xl font-bold text-primary mb-2">
-                        R$ {formatPrice(calculatePackagePrice(pkg.id, 15))}
-                      </p>
-                      <p className="text-xs text-muted-foreground mb-4">
-                        Base 15 crianças · Recalculado automaticamente
-                      </p>
-                      <ul className="space-y-2">
-                        {pkg.features.map((feature, i) => (
-                          <li key={i} className="flex items-start text-sm">
-                            <Check className="w-4 h-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                            <span>{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </Card>
-
-              {/* Step 2 - Number of Children */}
-              {selectedPackage && (
-                <Card className="p-8">
-                  <div className="mb-6">
-                    <Badge className="mb-2">Passo 2</Badge>
-                    <h2 className="text-2xl font-bold">Quantidade de Crianças</h2>
-                  </div>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {childrenRanges.map((range) => (
-                      <button
-                        key={range.value}
-                        onClick={() => setNumChildren(range.value)}
-                        className={`p-4 rounded-xl border-2 text-left transition-all ${
-                          numChildren === range.value
-                            ? "border-primary bg-primary/5"
-                            : "border-border hover:border-primary/50"
-                        }`}
-                      >
-                        <p className="font-semibold">{range.label}</p>
-                        {selectedPackage && (
-                          <p className="text-sm text-primary mt-1">
-                            R$ {formatPrice(calculatePackagePrice(selectedPackage, range.value))}
-                          </p>
-                        )}
-                      </button>
-                    ))}
-                  </div>
-                </Card>
-              )}
-
-              {/* Step 3 - Extras */}
-              {selectedPackage && numChildren && (
-                <Card className="p-8">
-                  <div className="mb-6">
-                    <Badge className="mb-2">Passo 3</Badge>
-                    <h2 className="text-2xl font-bold">Adicione Extras</h2>
-                    <p className="text-muted-foreground mt-2">Opcionais para tornar seu evento ainda mais especial</p>
-                  </div>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {extras.map((extra) => {
-                      const isSelected = selectedExtras.includes(extra.id);
-                      return (
-                        <button
-                          key={extra.id}
-                          onClick={() => toggleExtra(extra.id)}
-                          className={`p-4 rounded-xl border-2 text-left transition-all ${
-                            isSelected
-                              ? "border-primary bg-primary/5"
-                              : "border-border hover:border-primary/50"
-                          }`}
-                        >
-                          <div className="flex items-start justify-between">
-                            <div className="flex-1">
-                              <p className="font-semibold">{extra.name}</p>
-                              <p className="text-sm text-primary mt-1">
-                                + R$ {formatPrice(calculateWorkshopPrice(extra.id, numChildren))}
-                              </p>
-                            </div>
-                            <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
-                              isSelected ? "bg-primary text-white" : "bg-muted"
-                            }`}>
-                              {isSelected ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-                            </div>
-                          </div>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </Card>
-              )}
-            </div>
-
-            {/* Right Column - Summary */}
-            <div className="lg:col-span-1">
-              <Card className="p-8 sticky top-24">
-                <h3 className="text-xl font-bold mb-6">Resumo do Pedido</h3>
-                
-                {selectedPackage ? (
+        {/* Configurator */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <div className="grid lg:grid-cols-3 gap-8">
+                {/* Configuration Column */}
+                <div className="lg:col-span-2 space-y-12">
+                  {/* Step 1: Package Selection */}
                   <div className="space-y-6">
                     <div>
-                      <p className="text-sm text-muted-foreground mb-1">Pacote selecionado</p>
-                      <p className="font-semibold">
-                        {packages.find((p) => p.id === selectedPackage)?.name}
-                      </p>
+                      <Badge className="mb-2">Passo 1</Badge>
+                      <h2 className="text-3xl font-bold">Escolha o Pacote</h2>
                     </div>
-
-                    {numChildren && (
-                      <div>
-                        <p className="text-sm text-muted-foreground mb-1">Quantidade</p>
-                        <p className="font-semibold">
-                          {childrenRanges.find((r) => r.value === numChildren)?.label}
-                        </p>
-                        {selectedPackage && (
-                          <p className="text-sm text-primary mt-1">
-                            Pacote: R$ {formatPrice(calculatePackagePrice(selectedPackage, numChildren))}
-                          </p>
-                        )}
-                      </div>
-                    )}
-
-                    {selectedExtras.length > 0 && (
-                      <div>
-                        <p className="text-sm text-muted-foreground mb-2">Extras adicionados</p>
-                        <ul className="space-y-1">
-                          {selectedExtras.map((extraId) => {
-                            const extra = extras.find((e) => e.id === extraId);
-                            if (!extra) return null;
-                            return (
-                              <li key={extraId} className="text-sm flex justify-between">
-                                <span>{extra.name}</span>
-                                <span className="text-primary">
-                                  +R$ {formatPrice(calculateWorkshopPrice(extra.id, numChildren))}
-                                </span>
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </div>
-                    )}
-
-                    <div className="pt-6 border-t">
-                      <div className="flex justify-between items-center mb-6">
-                        <span className="text-lg font-semibold">Total estimado</span>
-                        <span className="text-3xl font-bold text-primary">
-                          R$ {formatPrice(calculateTotal())}
-                        </span>
-                      </div>
-                      
-                      <Button
-                        asChild
-                        size="lg"
-                        className="w-full rounded-xl"
-                        disabled={!selectedPackage || !numChildren}
-                      >
-                        <a
-                          href={`https://wa.me/5511992049001?text=Olá! Gostaria de contratar o pacote ${packages.find((p) => p.id === selectedPackage)?.name} para ${childrenRanges.find((r) => r.value === numChildren)?.label}.`}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                    <div className="grid md:grid-cols-2 gap-6">
+                      {packages.map((pkg) => (
+                        <Card
+                          key={pkg.id}
+                          className={`p-6 cursor-pointer transition-all duration-300 ${
+                            packageType === pkg.id
+                              ? "border-[#FF731D] border-2 shadow-lg"
+                              : "border-border hover:border-[#FF731D]/50"
+                          }`}
+                          onClick={() => setPackageType(pkg.id)}
                         >
-                          Solicitar via WhatsApp
-                          <ArrowRight className="ml-2 w-5 h-5" />
-                        </a>
-                      </Button>
+                          <h3 className="text-2xl font-bold mb-2">{pkg.name}</h3>
+                          <p className="text-muted-foreground mb-4">{pkg.description}</p>
+                          <ul className="space-y-2">
+                            {pkg.features.map((feature, idx) => (
+                              <li key={idx} className="flex items-start gap-2">
+                                <Check className="w-5 h-5 text-[#FF731D] mt-0.5 flex-shrink-0" />
+                                <span className="text-sm">{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </Card>
+                      ))}
                     </div>
                   </div>
-                ) : (
-                  <p className="text-muted-foreground text-center py-8">
-                    Selecione um pacote para começar
-                  </p>
-                )}
-              </Card>
+
+                  {/* Step 2: Children Count */}
+                  {packageType && (
+                    <div className="space-y-6 animate-fade-in">
+                      <div>
+                        <Badge className="mb-2">Passo 2</Badge>
+                        <h2 className="text-3xl font-bold">Número de Crianças</h2>
+                      </div>
+                      <div className="flex flex-wrap gap-3">
+                        {childrenRanges.map((range) => (
+                          <Button
+                            key={range.value}
+                            variant={numChildren === range.value ? "default" : "outline"}
+                            onClick={() => setNumChildren(range.value)}
+                            className="flex-1 min-w-[120px]"
+                          >
+                            {range.label}
+                          </Button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Step 3: Workshops */}
+                  {packageType && (
+                    <div className="space-y-6 animate-fade-in">
+                      <div>
+                        <Badge className="mb-2">Passo 3</Badge>
+                        <h2 className="text-3xl font-bold">Oficinas Criativas</h2>
+                        <p className="text-muted-foreground mt-2">Opcional - Adicione oficinas ao seu evento</p>
+                      </div>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        {workshops.map((workshop) => (
+                          <Card
+                            key={workshop.id}
+                            className={`cursor-pointer transition-all duration-300 overflow-hidden ${
+                              selectedWorkshops.includes(workshop.id)
+                                ? "border-[#FF731D] border-2 shadow-lg"
+                                : "border-border hover:border-[#FF731D]/50"
+                            }`}
+                            onClick={() => toggleWorkshop(workshop.id)}
+                          >
+                            <div className="aspect-video relative overflow-hidden">
+                              <img
+                                src={workshop.image}
+                                alt={workshop.name}
+                                className="w-full h-full object-cover"
+                              />
+                              {selectedWorkshops.includes(workshop.id) && (
+                                <div className="absolute top-2 right-2 bg-[#FF731D] text-white rounded-full p-1">
+                                  <Check className="w-5 h-5" />
+                                </div>
+                              )}
+                            </div>
+                            <div className="p-4">
+                              <h3 className="font-bold text-lg mb-1">{workshop.name}</h3>
+                              <p className="text-sm text-muted-foreground mb-2">{workshop.description}</p>
+                              <p className="text-[#FF731D] font-semibold">
+                                + R$ {formatPrice(calculateWorkshopPrice(workshop.id, numChildren))}
+                              </p>
+                            </div>
+                          </Card>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Step 4: Extras */}
+                  {packageType && (
+                    <div className="space-y-6 animate-fade-in">
+                      <div>
+                        <Badge className="mb-2">Passo 4</Badge>
+                        <h2 className="text-3xl font-bold">Extras</h2>
+                        <p className="text-muted-foreground mt-2">Opcional - Personalize ainda mais</p>
+                      </div>
+                      <div className="grid md:grid-cols-3 gap-4">
+                        {extras.map((extra) => (
+                          <Card
+                            key={extra.id}
+                            className={`p-6 cursor-pointer transition-all duration-300 ${
+                              selectedExtras.includes(extra.id)
+                                ? "border-[#FF731D] border-2 shadow-lg"
+                                : "border-border hover:border-[#FF731D]/50"
+                            }`}
+                            onClick={() => toggleExtra(extra.id)}
+                          >
+                            <div className="flex items-start justify-between mb-2">
+                              <h3 className="font-bold">{extra.name}</h3>
+                              {selectedExtras.includes(extra.id) && (
+                                <Check className="w-5 h-5 text-[#FF731D] flex-shrink-0" />
+                              )}
+                            </div>
+                            <p className="text-[#FF731D] font-semibold">
+                              + R$ {formatPrice(extra.price)}
+                            </p>
+                          </Card>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Summary Column */}
+                <div className="lg:col-span-1">
+                  <Card className="p-6 sticky top-24 space-y-6 border-[#FFD836] border-2">
+                    <h3 className="text-2xl font-bold">Resumo</h3>
+                    
+                    {!packageType ? (
+                      <p className="text-muted-foreground text-center py-8">
+                        Selecione um pacote para começar
+                      </p>
+                    ) : (
+                      <>
+                        <div className="space-y-3">
+                          <div className="pb-3 border-b">
+                            <p className="text-sm text-muted-foreground">Pacote</p>
+                            <p className="font-semibold">{packageType === "classic" ? "Classic" : "Select"}</p>
+                          </div>
+                          
+                          <div className="pb-3 border-b">
+                            <p className="text-sm text-muted-foreground">Crianças</p>
+                            <p className="font-semibold">{numChildren} crianças</p>
+                          </div>
+
+                          {selectedWorkshops.length > 0 && (
+                            <div className="pb-3 border-b">
+                              <p className="text-sm text-muted-foreground mb-1">Oficinas</p>
+                              <ul className="space-y-1">
+                                {selectedWorkshops.map((w) => (
+                                  <li key={w} className="text-sm">
+                                    • {workshops.find(ws => ws.id === w)?.name}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+
+                          {selectedExtras.length > 0 && (
+                            <div className="pb-3 border-b">
+                              <p className="text-sm text-muted-foreground mb-1">Extras</p>
+                              <ul className="space-y-1">
+                                {selectedExtras.map((e) => (
+                                  <li key={e} className="text-sm">
+                                    • {extras.find(ex => ex.id === e)?.name}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="pt-4 border-t-2 border-[#FFD836]">
+                          <p className="text-sm text-muted-foreground mb-1">Total</p>
+                          <p className="text-3xl font-bold text-[#FF731D]">
+                            R$ {formatPrice(calculateTotal())}
+                          </p>
+                        </div>
+
+                        <Button
+                          onClick={scrollToForm}
+                          className="w-full"
+                          size="lg"
+                        >
+                          Reservar Agora
+                          <ArrowRight className="ml-2" />
+                        </Button>
+
+                        <a
+                          href={getWhatsAppMessage()}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block"
+                        >
+                          <Button
+                            variant="outline"
+                            className="w-full"
+                            size="lg"
+                          >
+                            📱 Falar no WhatsApp
+                          </Button>
+                        </a>
+                      </>
+                    )}
+                  </Card>
+                </div>
+              </div>
             </div>
           </div>
+        </section>
 
-          {/* Step 4 - Jotform */}
-          {selectedPackage && numChildren && (
-            <Card className="mt-8 p-8">
-              <div className="mb-6">
-                <Badge className="mb-2">Passo 4</Badge>
-                <h2 className="text-2xl font-bold">Complete o Agendamento</h2>
-                <p className="text-muted-foreground mt-2">
-                  Preencha o formulário abaixo com os detalhes do seu evento
-                </p>
+        {/* JotForm Section */}
+        {packageType && (
+          <section id="jotform-container" className="py-16 bg-[#FFF8E6]">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <div className="text-center mb-8">
+                  <h2 className="text-3xl font-bold mb-4">Complete Sua Reserva</h2>
+                  <p className="text-muted-foreground">
+                    Preencha o formulário abaixo para finalizar sua reserva
+                  </p>
+                </div>
+                <Card className="p-4">
+                  <iframe
+                    src="https://form.jotform.com/243466215987670"
+                    width="100%"
+                    height="1250"
+                    frameBorder="0"
+                    style={{ border: "none" }}
+                    title="Formulário de Reserva Vivalegria"
+                    allowFullScreen
+                  />
+                </Card>
               </div>
-              <div className="rounded-3xl overflow-hidden shadow-premium">
-                <iframe
-                  src="https://form.jotform.com/243466215987670"
-                  title="Formulário de Agendamento Vivalegria"
-                  className="w-full h-[800px] border-0"
-                  allowFullScreen
-                />
-              </div>
-            </Card>
-          )}
-        </div>
+            </div>
+          </section>
+        )}
       </div>
     </>
   );
