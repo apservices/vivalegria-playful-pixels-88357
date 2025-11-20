@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import SEO from "@/components/SEO";
 import oficinaSlime from "@/assets/oficina-slime.jpg";
-import oficinaMicangas from "@/assets/oficina-micang as.jpg";
+import oficinaMicangas from "@/assets/oficina-micangas.jpg";
 import oficinaCupcake from "@/assets/oficina-cupcake.jpg";
 import oficinaPintura from "@/assets/oficina-pintura.jpg";
 import oficinaJardinagem from "@/assets/oficina-jardinagem.jpg";
