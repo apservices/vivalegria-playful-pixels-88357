@@ -64,6 +64,11 @@ const Footer = () => {
                   Eventos Corporativos
                 </Link>
               </li>
+              <li>
+                <Link to="/trabalhe-conosco" className="text-sm text-muted-foreground hover:text-[#FF731D] transition-colors duration-300">
+                  Trabalhe Conosco
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -89,8 +94,8 @@ const Footer = () => {
               </li>
               <li className="flex items-center space-x-3 text-sm">
                 <Phone size={18} className="flex-shrink-0 text-[#FFD836]" />
-                <a href="https://wa.me/5511992049001" className="text-muted-foreground hover:text-[#FF731D] transition-colors duration-300">
-                  (11) 99204-9001
+                <a href="https://wa.me/5511965982251" className="text-muted-foreground hover:text-[#FF731D] transition-colors duration-300">
+                  (11) 96598-2251
                 </a>
               </li>
               <li className="flex items-center space-x-3 text-sm">

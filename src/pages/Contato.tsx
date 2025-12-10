@@ -33,7 +33,7 @@ const Contato = () => {
 
     // Send to WhatsApp
     const message = `*Novo Contato - Vivalegria*\n\n*Nome:* ${formData.name}\n*Email:* ${formData.email}\n*Telefone:* ${formData.phone}\n*Tipo de Evento:* ${formData.eventType}\n*Mensagem:* ${formData.message}`;
-    const whatsappUrl = `https://wa.me/5511992049001?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/5511965982251?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
 
     toast({
@@ -85,12 +85,12 @@ const Contato = () => {
                   <div>
                     <h3 className="font-bold mb-2">Telefone / WhatsApp</h3>
                     <a
-                      href="https://wa.me/5511992049001"
+                      href="https://wa.me/5511965982251"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
-                      (11) 99204-9001
+                      (11) 96598-2251
                     </a>
                   </div>
                 </div>

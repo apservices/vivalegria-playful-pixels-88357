@@ -116,8 +116,8 @@ const Privacidade = () => {
                   </p>
                   <ul className="list-none pl-0 mt-3 space-y-1 text-muted-foreground">
                     <li><strong>E-mail:</strong> contato@vivalegria.com.br</li>
-                    <li><strong>Telefone:</strong> (11) 3333-3333</li>
-                    <li><strong>WhatsApp:</strong> (11) 9 9999-9999</li>
+                    <li><strong>Telefone:</strong> (11) 96598-2251</li>
+                    <li><strong>WhatsApp:</strong> (11) 96598-2251</li>
                   </ul>
                 </div>
 

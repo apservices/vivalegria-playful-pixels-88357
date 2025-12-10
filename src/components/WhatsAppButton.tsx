@@ -11,7 +11,7 @@ const WhatsAppButton = () => {
   
   const href = isContratarPage 
     ? getWhatsAppMessage() 
-    : "https://wa.me/5511992049001";
+    : "https://wa.me/5511965982251";
 
   return (
     <a

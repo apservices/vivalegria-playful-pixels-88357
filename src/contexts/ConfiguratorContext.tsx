@@ -85,7 +85,7 @@ export const ConfiguratorProvider = ({ children }: { children: ReactNode }) => {
 
   const getWhatsAppMessage = (): string => {
     if (!state.packageType) {
-      return "https://wa.me/5511992049001";
+      return "https://wa.me/5511965982251";
     }
 
     const total = calculateTotal();
@@ -99,7 +99,7 @@ export const ConfiguratorProvider = ({ children }: { children: ReactNode }) => {
 
     const message = `Olá! Quero reservar o pacote ${packageName} para ${state.numChildren} crianças. Oficinas: ${workshops}. Extras: ${extras}. Total R$ ${total.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}.`;
 
-    return `https://wa.me/5511992049001?text=${encodeURIComponent(message)}`;
+    return `https://wa.me/5511965982251?text=${encodeURIComponent(message)}`;
   };
 
   return (
