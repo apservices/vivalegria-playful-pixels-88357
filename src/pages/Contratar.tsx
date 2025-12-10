@@ -6,6 +6,7 @@ import SEO from "@/components/SEO";
 import { useConfigurator } from "@/contexts/ConfiguratorContext";
 import { formatPrice, childrenRanges, type WorkshopType } from "@/utils/pricing";
 import { calculateWorkshopPrice } from "@/utils/pricing";
+import { ContratacaoForm } from "@/components/ContratacaoForm";
 import oficinaCupcake from "@/assets/oficina-cupcake.jpg";
 import oficinaMicangas from "@/assets/oficina-micangas.jpg";
 import oficinaPintura from "@/assets/oficina-pintura.jpg";
@@ -91,7 +92,7 @@ const Contratar = () => {
   ];
 
   const scrollToForm = () => {
-    const formElement = document.getElementById("jotform-container");
+    const formElement = document.getElementById("contratacao-form");
     formElement?.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -344,9 +345,9 @@ const Contratar = () => {
           </div>
         </section>
 
-        {/* JotForm Section */}
+        {/* Formulário de Contratação */}
         {packageType && (
-          <section id="jotform-container" className="py-16 bg-[#FFF8E6]">
+          <section id="contratacao-form" className="py-16 bg-viva-offwhite">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-8">
@@ -355,17 +356,7 @@ const Contratar = () => {
                     Preencha o formulário abaixo para finalizar sua reserva
                   </p>
                 </div>
-                <Card className="p-4">
-                  <iframe
-                    src="https://form.jotform.com/243466215987670"
-                    width="100%"
-                    height="1250"
-                    frameBorder="0"
-                    style={{ border: "none" }}
-                    title="Formulário de Reserva Vivalegria"
-                    allowFullScreen
-                  />
-                </Card>
+                <ContratacaoForm />
               </div>
             </div>
           </section>

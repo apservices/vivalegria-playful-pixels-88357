@@ -14,7 +14,81 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      reservas: {
+        Row: {
+          cep: string | null
+          cidade: string | null
+          complemento: string | null
+          cpf_cnpj: string
+          created_at: string
+          data_evento: string
+          email: string
+          endereco: string | null
+          extras_selecionados: string[] | null
+          hora_inicio: string
+          id: string
+          local_evento: string
+          nome_completo: string
+          numero_criancas: number
+          oficinas_selecionadas: string[] | null
+          pacote_tipo: string
+          status: string
+          telefone: string
+          tipo_cadastro: Database["public"]["Enums"]["tipo_cadastro"]
+          tipo_cliente: Database["public"]["Enums"]["tipo_cliente"]
+          total_calculado: number
+          updated_at: string
+        }
+        Insert: {
+          cep?: string | null
+          cidade?: string | null
+          complemento?: string | null
+          cpf_cnpj: string
+          created_at?: string
+          data_evento: string
+          email: string
+          endereco?: string | null
+          extras_selecionados?: string[] | null
+          hora_inicio: string
+          id?: string
+          local_evento: string
+          nome_completo: string
+          numero_criancas?: number
+          oficinas_selecionadas?: string[] | null
+          pacote_tipo: string
+          status?: string
+          telefone: string
+          tipo_cadastro: Database["public"]["Enums"]["tipo_cadastro"]
+          tipo_cliente: Database["public"]["Enums"]["tipo_cliente"]
+          total_calculado: number
+          updated_at?: string
+        }
+        Update: {
+          cep?: string | null
+          cidade?: string | null
+          complemento?: string | null
+          cpf_cnpj?: string
+          created_at?: string
+          data_evento?: string
+          email?: string
+          endereco?: string | null
+          extras_selecionados?: string[] | null
+          hora_inicio?: string
+          id?: string
+          local_evento?: string
+          nome_completo?: string
+          numero_criancas?: number
+          oficinas_selecionadas?: string[] | null
+          pacote_tipo?: string
+          status?: string
+          telefone?: string
+          tipo_cadastro?: Database["public"]["Enums"]["tipo_cadastro"]
+          tipo_cliente?: Database["public"]["Enums"]["tipo_cliente"]
+          total_calculado?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +97,8 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      tipo_cadastro: "pf" | "pj"
+      tipo_cliente: "existente" | "novo"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +225,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      tipo_cadastro: ["pf", "pj"],
+      tipo_cliente: ["existente", "novo"],
+    },
   },
 } as const
