@@ -385,7 +385,7 @@ const GuiaParaPais = () => {
                   className="rounded-full bg-white text-primary hover:bg-white/90 shadow-premium"
                 >
                   <a 
-                    href="https://wa.me/5511992049001?text=Olá! Li o Guia para Pais e gostaria de saber mais sobre os serviços."
+                    href="https://wa.me/5511965982251?text=Olá! Li o Guia para Pais e gostaria de saber mais sobre os serviços."
                     target="_blank"
                     rel="noopener noreferrer"
                   >

@@ -284,7 +284,7 @@ const Home = () => {
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="rounded-full text-lg px-10 h-14 border-2 border-white text-white hover:bg-white hover:text-[#FF731D]">
-                <a href="https://wa.me/5511992049001" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/5511965982251" target="_blank" rel="noopener noreferrer">
                   Falar no WhatsApp
                 </a>
               </Button>

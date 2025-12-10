@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ConfiguratorProvider } from "@/contexts/ConfiguratorContext";
+import { AuthProvider } from "@/contexts/AuthContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -18,40 +19,60 @@ import Contratar from "./pages/Contratar";
 import GuiaParaPais from "./pages/GuiaParaPais";
 import Privacidade from "./pages/Privacidade";
 import Termos from "./pages/Termos";
+import TrabalheConosco from "./pages/TrabalheConosco";
+import AdminLogin from "./pages/admin/Login";
+import AdminDashboard from "./pages/admin/Dashboard";
+import AdminReservas from "./pages/admin/Reservas";
+import AdminCandidaturas from "./pages/admin/Candidaturas";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+// Layout component for public pages
+const PublicLayout = ({ children }: { children: React.ReactNode }) => (
+  <div className="flex flex-col min-h-screen">
+    <Header />
+    <main className="flex-grow">
+      {children}
+    </main>
+    <Footer />
+    <WhatsAppButton />
+    <CookieConsent />
+  </div>
+);
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <ConfiguratorProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <div className="flex flex-col min-h-screen">
-            <Header />
-            <main className="flex-grow">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/pacotes" element={<Pacotes />} />
-                <Route path="/oficinas" element={<Oficinas />} />
-                <Route path="/quem-somos" element={<QuemSomos />} />
-                <Route path="/corporativo" element={<Corporativo />} />
-                <Route path="/contato" element={<Contato />} />
-                <Route path="/contratar" element={<Contratar />} />
-                <Route path="/guia-para-pais" element={<GuiaParaPais />} />
-                <Route path="/privacidade" element={<Privacidade />} />
-                <Route path="/termos" element={<Termos />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </main>
-            <Footer />
-            <WhatsAppButton />
-            <CookieConsent />
-          </div>
-        </BrowserRouter>
-      </ConfiguratorProvider>
+      <AuthProvider>
+        <ConfiguratorProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              {/* Admin routes - no public layout */}
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/admin/reservas" element={<AdminReservas />} />
+              <Route path="/admin/candidaturas" element={<AdminCandidaturas />} />
+              
+              {/* Public routes with layout */}
+              <Route path="/" element={<PublicLayout><Home /></PublicLayout>} />
+              <Route path="/pacotes" element={<PublicLayout><Pacotes /></PublicLayout>} />
+              <Route path="/oficinas" element={<PublicLayout><Oficinas /></PublicLayout>} />
+              <Route path="/quem-somos" element={<PublicLayout><QuemSomos /></PublicLayout>} />
+              <Route path="/corporativo" element={<PublicLayout><Corporativo /></PublicLayout>} />
+              <Route path="/contato" element={<PublicLayout><Contato /></PublicLayout>} />
+              <Route path="/contratar" element={<PublicLayout><Contratar /></PublicLayout>} />
+              <Route path="/guia-para-pais" element={<PublicLayout><GuiaParaPais /></PublicLayout>} />
+              <Route path="/privacidade" element={<PublicLayout><Privacidade /></PublicLayout>} />
+              <Route path="/termos" element={<PublicLayout><Termos /></PublicLayout>} />
+              <Route path="/trabalhe-conosco" element={<PublicLayout><TrabalheConosco /></PublicLayout>} />
+              <Route path="*" element={<PublicLayout><NotFound /></PublicLayout>} />
+            </Routes>
+          </BrowserRouter>
+        </ConfiguratorProvider>
+      </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
