@@ -1,190 +1,89 @@
-import { Heart, Award, Users, Target } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import SEO from "@/components/SEO";
-import soloMascot from "@/assets/solo-mascot.png";
+import quemSomosBanner from "@/assets/viva-quem-somos-banner.png";
 
 const QuemSomos = () => {
-  const timeline = [
-    { year: "2015", event: "Fundação da Vivalegria", desc: "Início da jornada com foco em festas infantis memoráveis" },
-    { year: "2017", event: "Lançamento do mascote Solo", desc: "Criação do personagem que se tornou símbolo da alegria" },
-    { year: "2019", event: "Expansão para eventos corporativos", desc: "Passamos a atender shoppings, hotéis e empresas" },
-    { year: "2023", event: "Mais de 500 eventos realizados", desc: "Consolidação como referência em recreação premium" },
-  ];
-
-  const values = [
-    {
-      icon: Heart,
-      title: "Paixão",
-      description: "Amamos o que fazemos e isso se reflete em cada evento",
-    },
-    {
-      icon: Award,
-      title: "Excelência",
-      description: "Buscamos sempre superar expectativas com qualidade premium",
-    },
-    {
-      icon: Users,
-      title: "Empatia",
-      description: "Entendemos cada família e personalizamos cada experiência",
-    },
-    {
-      icon: Target,
-      title: "Comprometimento",
-      description: "Segurança e profissionalismo em primeiro lugar, sempre",
-    },
-  ];
-
-  const team = [
-    {
-      role: "Fundadora & CEO",
-      description: "Pedagoga com 15 anos de experiência em educação infantil e eventos",
-    },
-    {
-      role: "Coordenadora de Recreação",
-      description: "Especialista em brincadeiras lúdicas e desenvolvimento infantil",
-    },
-    {
-      role: "Equipe de Monitores",
-      description: "Profissionais treinados, certificados e apaixonados por alegria",
-    },
-  ];
-
   return (
     <>
       <SEO
         title="Quem Somos | Vivalegria Recreação"
-        description="Conheça a história da Vivalegria: mais de 10 anos transformando festas em experiências inesquecíveis com profissionalismo e alegria."
+        description="Conheça a Vivalegria: referência em entretenimento infantil, combinando o encanto da infância com experiências recreativas educativas e memoráveis."
         canonical="/quem-somos"
       />
 
       <div className="min-h-screen pt-20">
-        {/* Hero */}
-        <section className="py-24 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
-          <div className="container mx-auto px-4 text-center">
-            <h1 className="mb-6 text-balance">Nossa História</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-balance leading-relaxed">
-              Acreditamos que brincar é a forma mais bonita de aprender e criar memórias. Somos uma equipe apaixonada por transformar eventos em experiências de alegria e magia.
-            </p>
+        {/* Hero Banner */}
+        <section className="relative w-full h-[300px] md:h-[400px] overflow-hidden">
+          <img 
+            src={quemSomosBanner} 
+            alt="Bem-vindo à Vivalegria" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-[#FFD836]/80 flex items-center justify-center">
+            <h1 className="text-4xl md:text-6xl font-bold text-white text-center drop-shadow-lg">
+              Bem-vindo à Vivalegria
+            </h1>
           </div>
         </section>
 
-      {/* Numbers */}
-      <section className="py-16 border-b border-border">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto text-center">
-            <div>
-              <div className="text-5xl font-bold text-primary mb-2">500+</div>
-              <p className="text-muted-foreground">Eventos Realizados</p>
-            </div>
-            <div>
-              <div className="text-5xl font-bold text-primary mb-2">95</div>
-              <p className="text-muted-foreground">NPS de Satisfação</p>
-            </div>
-            <div>
-              <div className="text-5xl font-bold text-primary mb-2">10</div>
-              <p className="text-muted-foreground">Anos de História</p>
-            </div>
+        {/* Quem Somos */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <Card className="p-8 md:p-12 shadow-card border-t-4 border-[#FFD836]">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#FF731D] mb-6">Quem Somos</h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Fundada com o propósito de enriquecer a vida das crianças por meio da recreação, a Vivalegria é hoje um referencial em entretenimento infantil. Com uma equipe de especialistas em diversão, combinamos o encanto da infância com experiências recreativas educativas e memoráveis.
+              </p>
+            </Card>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Timeline */}
-      <section className="py-24">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="mb-4">Nossa Trajetória</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Uma década de alegria, aprendizado e evolução constante
-            </p>
+        {/* Nossa Missão */}
+        <section className="py-16 bg-[#FFF8E6]">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <Card className="p-8 md:p-12 shadow-card border-t-4 border-[#FF731D]">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#FF731D] mb-6">Nossa Missão</h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Nossa missão é criar momentos inesquecíveis onde a alegria e o aprendizado se entrelaçam de forma mágica. Em cada evento, festa ou encontro, garantimos que cada risada ressoe e cada experiência seja projetada com carinho e atenção aos detalhes. Buscamos ser referência no setor como a maior e melhor escolha dos nossos clientes, proporcionando experiências que marcam vidas e criam memórias duradouras.
+              </p>
+            </Card>
           </div>
+        </section>
 
-          <div className="max-w-4xl mx-auto space-y-8">
-            {timeline.map((item, index) => (
-              <div
-                key={index}
-                className="flex gap-6 items-start animate-fade-in"
-                style={{ animationDelay: `${index * 100}ms` }}
+        {/* Nossa Paixão */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <Card className="p-8 md:p-12 shadow-card border-t-4 border-[#73B6F0]">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#FF731D] mb-6">Nossa Paixão</h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Nossa paixão é proporcionar a crianças e famílias um espaço onde a imaginação comanda, a criatividade floresce e a diversão nunca termina. Com respeito pela individualidade de cada pequeno e um olhar sempre atento à segurança e ao bem-estar, a Vivalegria é mais do que uma empresa de recreação: é uma aliada da infância, um berço de momentos preciosos e uma guardiã de sorrisos.
+              </p>
+            </Card>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="py-20 bg-gradient-to-br from-[#FF731D] to-[#FF4E17]">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-8">
+              Vamos criar momentos mágicos juntos?
+            </h2>
+            <Button 
+              asChild 
+              size="lg" 
+              className="rounded-full text-lg px-10 h-14 bg-white text-[#FF731D] hover:bg-white/90"
+            >
+              <a 
+                href="https://wa.me/5511965982251?text=Olá vim pelo site e gostaria de um orçamento" 
+                target="_blank" 
+                rel="noopener noreferrer"
               >
-                <div className="flex-shrink-0">
-                  <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center">
-                    <span className="text-2xl font-bold text-primary">{item.year}</span>
-                  </div>
-                </div>
-                <Card className="flex-1 p-6 hover-lift">
-                  <h3 className="text-xl font-bold mb-2">{item.event}</h3>
-                  <p className="text-muted-foreground">{item.desc}</p>
-                </Card>
-              </div>
-            ))}
+                Fale conosco pelo WhatsApp
+              </a>
+            </Button>
           </div>
-        </div>
-      </section>
-
-      {/* Values */}
-      <section className="py-24 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="mb-4">Nossos Valores</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              O que nos move e inspira em cada evento
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {values.map((value, index) => (
-              <Card key={index} className="p-8 text-center hover-lift shadow-card">
-                <div className="mx-auto w-20 h-20 flex items-center justify-center mb-4">
-                  <img src={soloMascot} alt="Mascote Solo" className="w-full h-full object-contain" />
-                </div>
-                <h3 className="text-xl font-bold mb-3">{value.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{value.description}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team */}
-      <section className="py-24">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="mb-4">Nossa Equipe</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Profissionais dedicados e apaixonados por criar alegria
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {team.map((member, index) => (
-              <Card key={index} className="p-8 text-center hover-lift">
-                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary via-accent to-secondary mx-auto mb-4"></div>
-                <h3 className="text-lg font-bold mb-2">{member.role}</h3>
-                <p className="text-sm text-muted-foreground">{member.description}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Mission/Vision */}
-      <section className="py-24 bg-gradient-to-br from-secondary/10 via-primary/10 to-accent/10">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            <Card className="p-10">
-              <h3 className="text-2xl font-bold mb-4">Nossa Missão</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Transformar festas e eventos em experiências inesquecíveis, proporcionando alegria, segurança e aprendizado lúdico para cada criança, enquanto tranquilizamos e encantamos as famílias com profissionalismo e cuidado.
-              </p>
-            </Card>
-            <Card className="p-10">
-              <h3 className="text-2xl font-bold mb-4">Nossa Visão</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Ser a referência nacional em recreação infantil premium, reconhecida pela excelência, inovação e pelo impacto positivo na vida de milhares de crianças e famílias.
-              </p>
-            </Card>
-          </div>
-        </div>
-      </section>
+        </section>
       </div>
     </>
   );
