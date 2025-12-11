@@ -9,24 +9,33 @@ import {
 } from "@/components/ui/accordion";
 import SEO from "@/components/SEO";
 import JsonLd from "@/components/JsonLd";
+import VideoHero from "@/components/VideoHero";
+import vivaSlime from "@/assets/viva-slime.png";
+import vivaRecreacao from "@/assets/viva-recreacao.png";
+import vivaPintura from "@/assets/viva-pintura.png";
+import vivaEquipe from "@/assets/viva-equipe.png";
 
 const Home = () => {
   const values = [
     {
       title: "Segurança e Profissionalismo",
       description: "Monitores treinados e certificados com equipamentos premium",
+      image: vivaEquipe,
     },
     {
       title: "+500 Eventos Realizados",
       description: "Experiência comprovada em festas inesquecíveis",
+      image: vivaRecreacao,
     },
     {
-      title: "Experiências Personalizadas",
-      description: "Cada evento é único e feito sob medida para você",
+      title: "Oficinas Criativas",
+      description: "Slime, pintura, miçangas e muito mais",
+      image: vivaSlime,
     },
     {
-      title: "Alegria Garantida",
+      title: "Experiências Únicas",
       description: "Transformamos brincadeiras em memórias eternas",
+      image: vivaPintura,
     },
   ];
 
@@ -86,38 +95,8 @@ const Home = () => {
       <JsonLd type="faq" />
       
       <div className="min-h-screen">
-        {/* Hero Section - Warm & Welcoming */}
-        <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#FFD836]/20 via-white to-white pt-20">
-          <div className="container mx-auto px-6 py-24 relative z-10">
-            <div className="max-w-5xl mx-auto text-center space-y-8 animate-fade-in">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-                Transforme seu evento em um<br />momento mágico!
-              </h1>
-              <p className="text-xl md:text-2xl text-foreground/80 max-w-3xl mx-auto leading-relaxed">
-                Recreação infantil com alegria, segurança e profissionalismo.<br />
-                Experiências inesquecíveis para toda a família.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                <Button asChild size="lg" className="rounded-full text-lg px-10 h-14">
-                  <Link to="/contratar">
-                    Planejar meu evento
-                  </Link>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="rounded-full text-lg px-10 h-14">
-                  <Link to="/pacotes">
-                    Ver pacotes
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-          
-          {/* Decorative elements */}
-          <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-            <div className="absolute top-20 right-10 w-64 h-64 bg-[#FFD836]/20 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-20 left-10 w-80 h-80 bg-[#FF731D]/10 rounded-full blur-3xl"></div>
-          </div>
-        </section>
+        {/* Video Hero Section */}
+        <VideoHero />
 
       {/* Values Section - Card Style */}
       <section className="py-20 bg-white">
@@ -130,11 +109,15 @@ const Home = () => {
             {values.map((value, index) => (
               <Card
                 key={index}
-                className="p-8 text-center hover:-translate-y-2 transition-all duration-300 shadow-card hover:shadow-hover border-2"
+                className="p-6 text-center hover:-translate-y-2 transition-all duration-300 shadow-card hover:shadow-hover border-2 overflow-hidden"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="w-16 h-16 mx-auto mb-6 bg-[#FFD836] rounded-full flex items-center justify-center">
-                  <div className="w-8 h-8 bg-[#FF731D] rounded-full"></div>
+                <div className="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden border-4 border-[#FFD836]">
+                  <img 
+                    src={value.image} 
+                    alt={value.title} 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-[#FF731D]">{value.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
